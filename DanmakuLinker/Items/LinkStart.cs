@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using ShitLib.Net.BLiveDanmaku;
+using ShitLib.Net.Bilibili.BLiveDanmaku;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
