@@ -10,5 +10,5 @@ Credits: @AxeelAnder (for the rolling part) and @Rebuild (for the rest)
 
 ### Used Libraries
 
- - [SxxtLib](https://github.com/Shimogawa/NotKnowingWhatToDo/tree/master/NotKnowingWhatToDo/Net/BLiveDanmaku) is from part of the old project.
+ - [SxxtLib](https://github.com/Shimogawa/ShitLib) is a newly initiated old project.
  - [TModLoader](https://github.com/blushiemagic/tModLoader) for the mod support for Terraria.

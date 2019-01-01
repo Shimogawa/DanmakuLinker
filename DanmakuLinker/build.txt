@@ -1,5 +1,5 @@
 ﻿author = Rebuild & 鱼鱼
-version = 0.3
+version = 0.4
 displayName = Danmaku Linker
 buildIgnore = buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, *.xlsx, *.m, *.pptx, *.docx, *.tmp, *.zip, *.psd, *.sln, *.gitattributes, *.gitignore
 dllReferences = ShitLib
