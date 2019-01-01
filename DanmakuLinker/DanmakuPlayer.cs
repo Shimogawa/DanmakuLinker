@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ShitLib.Net.BLiveDanmaku.MessageTypes;
+using ShitLib.Net.Bilibili.BLiveDanmaku.MessageTypes;
 using Terraria;
 
 namespace DanmakuLinker

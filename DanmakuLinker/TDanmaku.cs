@@ -2,7 +2,7 @@
 using Terraria;
 using ReLogic;
 using Microsoft.Xna.Framework.Graphics;
-using ShitLib.Net.BLiveDanmaku.MessageTypes;
+using ShitLib.Net.Bilibili.BLiveDanmaku.MessageTypes;
 
 namespace DanmakuLinker
 {

@@ -2,11 +2,11 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using ShitLib.Net.BLiveDanmaku;
-using ShitLib.Net.BLiveDanmaku.MessageTypes;
+using ShitLib.Net;
+using ShitLib.Net.Bilibili.BLiveDanmaku;
+using ShitLib.Net.Bilibili.BLiveDanmaku.MessageTypes;
 using Terraria;
 using Terraria.ModLoader;
-using ReLogic.Graphics;
 
 namespace DanmakuLinker
 {
@@ -28,7 +28,7 @@ namespace DanmakuLinker
             }
         }
 
-        private void ShowDanmaku(BMessageInfo info)
+        private void ShowDanmaku(MessageInfo<BMessageType, BMessage> info)
         {
             switch (info.MessageType)
             {
