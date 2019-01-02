@@ -28,11 +28,11 @@ namespace DanmakuLinker
             }
         }
 
-        private void ShowDanmaku(MessageInfo<BMessageType, BMessage> info)
+        private void ShowDanmaku(MessageInfo<MessageType, BMessage> info)
         {
             switch (info.MessageType)
             {
-                case BMessageType.Danmaku:
+                case MessageType.Danmaku:
                     {
                         if (DanmakuLinker.danmakuPlayer.config.rollingDanmakuEnabled)
                         {
@@ -79,28 +79,28 @@ namespace DanmakuLinker
 
                         break;
                     }
-                case BMessageType.Gift:
+                case MessageType.Gift:
                     {
                         var bgift = info.Message as BGift;
                         Main.NewText(string.Format("[c/40e0d0:{0}] 送出 [c/ff00ff:{1} * {2}]", bgift.Username, bgift.GiftName,
                             bgift.Amount));
                         break;
                     }
-                case BMessageType.EnterRoom:
+                case MessageType.EnterRoom:
                     {
                         var bwelcome = info.Message as BWelcome;
                         Main.NewText(string.Format("[c/40e0d0:{0}] 进入了直播间。", bwelcome.Username));
                         break;
                     }
-                case BMessageType.OnlineViewerInfo:
+                case MessageType.OnlineViewerInfo:
                     Main.NewText(info.Message.WholeMessage, Color.DarkGray, false);
                     break;
-                case BMessageType.Log:
+                case MessageType.Log:
                     Main.NewText(info.Message.WholeMessage);
                     break;
-                case BMessageType.SysMsg:
+                case MessageType.SysMsg:
                     break;
-                case BMessageType.Other:
+                case MessageType.Others:
                     Main.NewText(info.Message.WholeMessage);
                     break;
                 default:

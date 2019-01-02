@@ -48,7 +48,7 @@ namespace DanmakuLinker.Items
 	        {
                 Main.NewText("¿ªÊ¼Á´½Óµ¯Ä»...");
                 modPlayer.prog = new BDanmakuGetter(modPlayer.roomID);
-                modPlayer.prog.StartLoop();
+                modPlayer.prog.Connect();
             }
             else
             {
