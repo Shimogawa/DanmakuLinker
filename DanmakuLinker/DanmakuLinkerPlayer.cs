@@ -8,18 +8,24 @@ using ShitLib.Net.Douyu;
 using ShitLib.Net.Douyu.MessageTypes;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace DanmakuLinker
 {
     class DanmakuLinkerPlayer : ModPlayer
     {
-        public bool isConnected;
+	    public bool isConnected = false;
         public int roomID = -1;
-        public IDanmakuGetter prog;
+        public IDanmakuGetter prog = null;
 
-		public PlatformEnum Platform { get; set; }
-        
-        public override void PostUpdate()
+	    public PlatformEnum Platform { get; set; }
+
+	    public override void Load(TagCompound tag)
+	    {
+		    Platform = PlatformEnum.None;
+	    }
+
+	    public override void PostUpdate()
         {
 	        if (Platform == PlatformEnum.None)
 		        return;
@@ -100,10 +106,20 @@ namespace DanmakuLinker
 					if (g < 0x80) g = 0x80;
 					var b = 0xf4 - (level / 3) * 0x24;
 					if (b < 0x0) b = 0x0;
-					sb.Append(string.Format(
-						"[c/ff{0:X2}{1:X2}:【Lv.{2}】][c/40e0d0:{3}] 说：[c/{4}:{5}]",
-						g, b, level, ddanmaku.User.Username, color, ddanmaku.Danmaku
-					));
+					if (ddanmaku.Color != 0)
+					{
+						sb.Append(string.Format(
+							"[c/ff{0:X2}{1:X2}:【Lv.{2}】][c/40e0d0:{3}] 说：[c/{4}:{5}]",
+							g, b, level, ddanmaku.User.Username, color, ddanmaku.Danmaku
+						));
+					}
+					else
+					{
+						sb.Append(string.Format(
+							"[c/ff{0:X2}{1:X2}:【Lv.{2}】][c/40e0d0:{3}] 说：{4}",
+							g, b, level, ddanmaku.User.Username, ddanmaku.Danmaku
+						));
+					}
 					Main.NewText(sb.ToString());
 					break;
 				case MessageType.EnterRoom:

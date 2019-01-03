@@ -44,7 +44,7 @@ namespace DanmakuLinker.Items
                 return true;
             }
 
-		    if (modPlayer.Platform != PlatformEnum.Bilibili)
+		    if (modPlayer.isConnected && modPlayer.Platform != PlatformEnum.Bilibili)
 		    {
 			    Main.NewText("使用了不正确的连接器，请换一个。", Color.Red);
 			    return true;
