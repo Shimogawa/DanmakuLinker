@@ -44,7 +44,13 @@ namespace DanmakuLinker.Items
                 return true;
             }
 
-            if (!modPlayer.isConnected)
+		    if (modPlayer.Platform != PlatformEnum.Bilibili)
+		    {
+			    Main.NewText("使用了不正确的连接器，请换一个。", Color.Red);
+			    return true;
+		    }
+
+			if (!modPlayer.isConnected)
 	        {
                 Main.NewText("开始链接弹幕...");
                 modPlayer.prog = new BDanmakuGetter(modPlayer.roomID);

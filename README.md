@@ -1,8 +1,8 @@
 # Danmaku Linker 0.5.0
 
-链接[b站](https://www.bilibili.com)弹幕。只有一个未修改贴图的物品（以打开和关闭链接）和一个指令（设置链接房间）。
+链接[b站](https://www.bilibili.com)或[斗鱼](https://www.douyu.com/)弹幕。提供2个未修改贴图的物品（以打开和关闭链接）和2个指令（设置链接房间与滚动弹幕）。
 
-Link ONLY for [BILIBILI](https://www.bilibili.com) danmaku live. ONLY 1 single item for opening and closing the stream.
+Link live danmaku for [BILIBILI](https://www.bilibili.com) or [Douyu](https://www.douyu.com/).
 
 作者：鱼鱼（滚动弹幕部分），Rebuild（其余部分）
 
@@ -23,20 +23,20 @@ More can be found in file `DanmakuLinkerConfig.json`.
 
 ### 2. Start 启用
 
-使用物品“链接器”。
+使用物品“B站弹幕链接器”或“斗鱼弹幕连接器”。
 
-Use item "BLinker".
+Use item "BLinker" (for Bilibili) or "DLinker" (for Douyu).
 
 ### 3. End 停用
 
-再次使用物品“链接器”。
+再次使用物品“B站弹幕链接器”或“斗鱼弹幕连接器”。
 
 Again, use item "BLinker".
 
 
 ## 注释 Comments
 
-目前仅支持b站弹幕，虽然斗鱼接口已经完工，但是懒得做，鸽几天。
+滚动弹幕目前仅限于Bilibili。
 
 ### Used Libraries
 
