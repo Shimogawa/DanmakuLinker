@@ -37,8 +37,10 @@
     <Compile Include="DanmakuLinker.cs" />
     <Compile Include="DanmakuLinkerPlayer.cs" />
     <Compile Include="DanmakuPlayer.cs" />
-    <Compile Include="Items\LinkStart.cs" />
+    <Compile Include="Items\BLink.cs" />
+    <Compile Include="Items\DLink.cs" />
     <Compile Include="MyCommand.cs" />
+    <Compile Include="PlatformEnum.cs" />
     <Compile Include="TDanmaku.cs" />
   </ItemGroup>
   <ItemGroup>

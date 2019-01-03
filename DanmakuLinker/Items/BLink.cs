@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 
 namespace DanmakuLinker.Items
 {
-	public class LinkStart : ModItem
+	public class BLink : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("BLinker");
-            DisplayName.AddTranslation(GameCulture.Chinese, "Á´½ÓÆ÷");
+            DisplayName.AddTranslation(GameCulture.Chinese, "BÕ¾µ¯Ä»Á´½ÓÆ÷");
 			Tooltip.SetDefault("Start or end linking to bilibili danmaku server and recording danmaku.");
             Tooltip.AddTranslation(GameCulture.Chinese, "¿ªÊ¼»òÖÕÖ¹Á´½ÓbÕ¾µ¯Ä»¡£");
 		}
@@ -49,13 +49,17 @@ namespace DanmakuLinker.Items
                 Main.NewText("¿ªÊ¼Á´½Óµ¯Ä»...");
                 modPlayer.prog = new BDanmakuGetter(modPlayer.roomID);
                 modPlayer.prog.Connect();
-            }
+		        modPlayer.Platform = PlatformEnum.Bilibili;
+		        modPlayer.isConnected = true;
+
+	        }
             else
             {
                 Main.NewText("Á´½ÓÖÕÖ¹¡£ÇëºöÂÔ±¨´í¡£");
                 modPlayer.prog.Disconnect();
+	            modPlayer.Platform = PlatformEnum.None;
+	            modPlayer.isConnected = false;
             }
-            modPlayer.isConnected = !modPlayer.isConnected;
 
 	        return true;
 	    }
