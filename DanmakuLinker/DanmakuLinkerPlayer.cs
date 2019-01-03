@@ -97,7 +97,7 @@ namespace DanmakuLinker
 
 					if (ddanmaku.User.Badge != null && ddanmaku.User.Badge.BadgeLevel != 0)
 						sb.Append(string.Format(
-							"[c/9aff02:【{0}|{1}】]",
+							"[c/9aff02:【{0} · {1}】]",
 							ddanmaku.User.Badge.BadgeName, ddanmaku.User.Badge.BadgeLevel
 						));
 
