@@ -37,7 +37,7 @@ namespace DanmakuLinker
             // 初始化速度
             linesVelocity = new float[config.danmakuMaxLineCount];
             for (int i = 0; i < linesVelocity.Length; i++)
-                linesVelocity[i] = config.danmakuVelocity + Main.rand.NextFloat(config.velocityDeltaMax);
+                linesVelocity[i] = config.danmakuVelocity + (float)DanmakuLinker.rand.NextDouble() * config.velocityDeltaMax;
 
             bDanmakuQueue = new Queue<BDanmaku>();
             tDanmakuPool = new List<TDanmaku>();

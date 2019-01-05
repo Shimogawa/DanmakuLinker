@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using DanmakuLinker.Items;
@@ -13,6 +14,8 @@ namespace DanmakuLinker
 	class DanmakuLinker : Mod
 	{
         public static DanmakuPlayer danmakuPlayer = new DanmakuPlayer();
+
+		public static Random rand = new Random();
 
 		public DanmakuLinker()
 		{
