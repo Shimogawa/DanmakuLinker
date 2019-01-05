@@ -1,5 +1,5 @@
-﻿链接b站弹幕。只有一个未修改贴图的物品（以打开和关闭链接）和一个指令（设置链接房间）。
-Link ONLY TO BILIBILI(https://www.bilibili.com) now. ONLY 1 single item for opening and closing the stream.
+﻿可以连接bilibili与斗鱼弹幕。详细使用方法请查看官网。
+Link to danmaku server of Bilibili and Douyu. See more on homepage.
 
 作者：鱼鱼（滚动弹幕部分），Rebuild（其余部分）
 Credits: @AxeelAnder (for the rolling part) and @Rebuild (for the rest)
