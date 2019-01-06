@@ -1,4 +1,4 @@
-# Danmaku Linker 0.5.2
+# Danmaku Linker 0.5.4
 
 链接[b站](https://www.bilibili.com)或[斗鱼](https://www.douyu.com/)弹幕。提供2个未修改贴图的物品（以打开和关闭链接）和2个指令（设置链接房间与滚动弹幕）。
 
