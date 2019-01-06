@@ -12,25 +12,25 @@ using Terraria.ModLoader.IO;
 
 namespace DanmakuLinker
 {
-    class DanmakuLinkerPlayer : ModPlayer
-    {
-	    public bool isConnected = false;
-        public int roomID = -1;
-        public IDanmakuGetter prog = null;
+	class DanmakuLinkerPlayer : ModPlayer
+	{
+		public bool isConnected = false;
+		public int roomID = -1;
+		public IDanmakuGetter prog = null;
 
-	    public PlatformEnum Platform { get; set; }
+		public PlatformEnum Platform { get; set; }
 
-	    public override void Load(TagCompound tag)
-	    {
-		    Platform = PlatformEnum.None;
-	    }
+		public override void Load(TagCompound tag)
+		{
+			Platform = PlatformEnum.None;
+		}
 
-	    public override void PostUpdate()
-        {
-	        if (Platform == PlatformEnum.None)
-		        return;
-	        switch (Platform)
-	        {
+		public override void PostUpdate()
+		{
+			if (Platform == PlatformEnum.None)
+				return;
+			switch (Platform)
+			{
 				case PlatformEnum.Bilibili:
 					ShowB_internal();
 					break;
@@ -39,48 +39,48 @@ namespace DanmakuLinker
 					break;
 				default:
 					break;
-	        }
-        }
-
-	    private void ShowD_internal()
-	    {
-		    if (isConnected)
-		    {
-			    if (!prog.IsConnected)
-			    {
-					RestartDLinker();
-			    }
-			    var p = prog as DDanmakuGetter;
-			    var first = p.DanmakuList.GetFirst();
-			    if (first != null)
-			    {
-					ShowDDanmaku(first);
-			    }
-		    }
-	    }
-
-	    private void RestartDLinker()
-	    {
-		    prog.Connect();
-	    }
-
-	    private void ShowB_internal()
-	    {
-		    if (isConnected)
-		    {
-			    var p = prog as BDanmakuGetter;
-			    var first = p.DanmakuList.GetFirst();
-			    if (first != null)
-			    {
-				    ShowBDanmaku(first);
-			    }
-		    }
+			}
 		}
 
-	    private void ShowDDanmaku(MessageInfo<MessageType, DMessage> info)
-	    {
-		    switch (info.MessageType)
-		    {
+		private void ShowD_internal()
+		{
+			if (isConnected)
+			{
+				if (!prog.IsConnected)
+				{
+					RestartDLinker();
+				}
+				var p = prog as DDanmakuGetter;
+				var first = p.DanmakuList.GetFirst();
+				if (first != null)
+				{
+					ShowDDanmaku(first);
+				}
+			}
+		}
+
+		private void RestartDLinker()
+		{
+			prog.Connect();
+		}
+
+		private void ShowB_internal()
+		{
+			if (isConnected)
+			{
+				var p = prog as BDanmakuGetter;
+				var first = p.DanmakuList.GetFirst();
+				if (first != null)
+				{
+					ShowBDanmaku(first);
+				}
+			}
+		}
+
+		private void ShowDDanmaku(MessageInfo<MessageType, DMessage> info)
+		{
+			switch (info.MessageType)
+			{
 				case MessageType.Log:
 					Main.NewText(info.Message.WholeMessage);
 					break;
@@ -136,92 +136,75 @@ namespace DanmakuLinker
 					break;
 				case MessageType.Gift:
 					var dgift = info.Message as DGift;
-					Main.NewText(string.Format("[c/40e0d0:{0}] 送出 [c/ff00ff:{1} * {2}]（[c/b07c2f:{3}连击！]）", 
+					Main.NewText(string.Format("[c/40e0d0:{0}] 送出 [c/ff00ff:{1} * {2}]（[c/b07c2f:{3}连击！]）",
 						dgift.User.Username, dgift.GiftName, dgift.Amount, dgift.Combo));
 					break;
-		    }
-	    }
+			}
+		}
 
-        private void ShowBDanmaku(MessageInfo<MessageType, BMessage> info)
-        {
-            switch (info.MessageType)
-            {
-                case MessageType.Danmaku:
-                    {
-                        if (DanmakuLinker.danmakuPlayer.config.rollingDanmakuEnabled)
-                        {
-                            var bdanmaku = info.Message as BDanmaku;
-                            DanmakuLinker.danmakuPlayer.bDanmakuQueue.Enqueue(bdanmaku);
-                        }
-                        else
-                        {
-                            var bdanmaku = (BDanmaku)info.Message;
+		private void ShowBDanmaku(MessageInfo<MessageType, BMessage> info)
+		{
+			switch (info.MessageType)
+			{
+				case MessageType.Danmaku:
+					{
+						if (DanmakuLinker.danmakuPlayer.config.rollingDanmakuEnabled)
+						{
+							var bdanmaku = info.Message as BDanmaku;
+							DanmakuLinker.danmakuPlayer.bDanmakuQueue.Enqueue(bdanmaku);
+						}
+						else
+						{
+							var bdanmaku = (BDanmaku)info.Message;
 
-                            var sb = new StringBuilder();
-                            for (var i = 0; i < bdanmaku.Prefix.Length; i++)
-                            {
-                                if (bdanmaku.Prefix[i] != null)
-                                {
-                                    switch (i)
-                                    {
-                                        case 0:
-                                            sb.Append(string.Format("[c/ff7f50:{0}]", bdanmaku.Prefix[i]));
-                                            break;
-                                        case 1:
-                                            sb.Append(string.Format("[c/9aff02:{0}]", bdanmaku.Prefix[i]));
-                                            break;
-                                        case 2:
-                                            var regex = new Regex(@"\d+");
-                                            var match = regex.Match(bdanmaku.Prefix[i]);
-                                            var level = int.Parse(match.Value);
+							var sb = new StringBuilder();
+							if (bdanmaku.User.IsAdmin)
+								sb.Append("[c/ff7f50:【房管】]");
+							if (bdanmaku.User.IsSVIP)
+								sb.Append(string.Format("[c/9aff02:【{0}】]", BUser.SVIP));
+							if (bdanmaku.User.Badge != null)
+							{
+								var level = bdanmaku.User.Badge.BadgeLevel;
+								var g = 0xfa - (level / 3) * 0x12;
+								if (g < 0x80) g = 0x80;
+								var b = 0xf4 - (level / 3) * 0x24;
+								if (b < 0x0) b = 0x0;
+								sb.Append(string.Format("[c/ff{0:x2}{1:x2}:【{2} {3}】]", g, b, bdanmaku.User.Badge.BadgeName, level));
+							}
 
-                                            var g = 0xfa - (level / 3) * 0x12;
-                                            if (g < 0x80) g = 0x80;
-                                            var b = 0xf4 - (level / 3) * 0x24;
-                                            if (b < 0x0) b = 0x0;
-
-                                            sb.Append(string.Format("[c/ff{0:X2}{1:X2}:{2}]", g, b, bdanmaku.Prefix[i]));
-                                            break;
-                                    }
-                                }
-                            }
-
-                            sb.Append(string.Format("[c/40e0d0:{0}] 说： [c/ffb6c1:{1}]", bdanmaku.Username,
-                                bdanmaku.Danmaku));
-                            Main.NewText(sb.ToString());
-                        }
-
-                        break;
-                    }
-                case MessageType.Gift:
-                    {
-                        var bgift = info.Message as BGift;
-                        Main.NewText(string.Format("[c/40e0d0:{0}] 送出 [c/ff00ff:{1} * {2}]", bgift.Username, bgift.GiftName,
-                            bgift.Amount));
-                        break;
-                    }
-                case MessageType.EnterRoom:
-                    {
-                        var bwelcome = info.Message as BWelcome;
-                        Main.NewText(string.Format("[c/40e0d0:{0}] 进入了直播间。", bwelcome.Username));
-                        break;
-                    }
-                case MessageType.OnlineViewerInfo:
-                    Main.NewText(info.Message.WholeMessage, Color.DarkGray, false);
-                    break;
-                case MessageType.Log:
-                    Main.NewText(info.Message.WholeMessage);
-                    break;
-                case MessageType.SysMsg:
-                    break;
-                case MessageType.Others:
-                    Main.NewText(info.Message.WholeMessage);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        
-    }
+							sb.Append(string.Format("[c/40e0d0:{0}] 说： [c/ffb6c1:{1}]", bdanmaku.Username,
+								bdanmaku.Danmaku));
+							Main.NewText(sb.ToString());
+						}
+						break;
+					}
+				case MessageType.Gift:
+					{
+						var bgift = info.Message as BGift;
+						Main.NewText(string.Format("[c/40e0d0:{0}] 送出 [c/ff00ff:{1} * {2}]", bgift.Username, bgift.GiftName,
+							bgift.Amount));
+						break;
+					}
+				case MessageType.EnterRoom:
+					{
+						var bwelcome = info.Message as BWelcome;
+						Main.NewText(string.Format("[c/40e0d0:{0}] 进入了直播间。", bwelcome.Username));
+						break;
+					}
+				case MessageType.OnlineViewerInfo:
+					Main.NewText(info.Message.WholeMessage, Color.DarkGray, false);
+					break;
+				case MessageType.Log:
+					Main.NewText(info.Message.WholeMessage);
+					break;
+				case MessageType.SysMsg:
+					break;
+				case MessageType.Others:
+					Main.NewText(info.Message.WholeMessage);
+					break;
+				default:
+					break;
+			}
+		}
+	}
 }

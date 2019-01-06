@@ -3,3 +3,9 @@ Link to danmaku server of Bilibili and Douyu. See more on homepage.
 
 作者：鱼鱼（滚动弹幕部分），Rebuild（其余部分）
 Credits: @AxeelAnder (for the rolling part) and @Rebuild (for the rest)
+
+
+----------------
+Version 0.5.4
+- 修复了B站无法找到真实房间号的问题。
+- 更新至ShitLib v0.7.5
